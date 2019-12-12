@@ -1,0 +1,516 @@
+<html>
+
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sorting Algo Visualizer</title>
+	<style>
+
+		#overlay{
+		  position:fixed;
+		  z-index:99998;
+		  top:0;
+		  left:0;
+		  bottom:0;
+		  right:0;
+		  background:rgba(0,0,0,1);
+		}
+
+
+		#loader2 {
+			position:fixed;
+			z-index:99998;
+			top:0;
+			left:0;
+			bottom:0;
+			right:0;
+			margin: auto;
+			border-radius: 100%;
+			border-left: 16px solid green;
+			border-top: 16px solid white;
+			border-right: 16px solid green;
+			border-bottom: 16px solid white;
+			width: 80px;
+			height: 80px;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2.5s linear infinite;
+		}
+
+		@-webkit-keyframes spin {
+		  0% { -webkit-transform: rotate(0deg); }
+		  100% { -webkit-transform: rotate(360deg); }
+		}
+
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+
+	.Heading{
+			text-shadow: 0 0 6px black;
+			position: fixed;
+			color: white;
+			height: 26px;
+			top:-2;
+			right: 0;
+			width: 100%;
+			font-size: 26px;
+			font-family: Impact;
+			text-align: left;
+			background-color: black;
+			z-index: 2;
+		}
+
+	.sortingalgo{
+		text-align: center;
+		font-family: 'Abel';
+		font-size: 60px;
+		color: white;
+		z-index: 3;
+		position: relative;
+	}
+	.sortingalgo2{
+		text-align: center;
+		font-family: 'Abel';
+		font-size: 60px;
+		color: white;
+		z-index: 0;
+		position: relative;
+		top: -30;
+		right: -44;
+	}
+			
+	.trans{		
+		height: 400px;
+		float: top;
+		border-top: 1px solid white;
+		transition-duration: 0.1s;
+		color: green;
+		border-bottom-left-radius: 6px;
+		border-bottom-right-radius: 6px;
+	}
+
+	.button1{
+			color: white;
+			font-size: 18px;
+			font-family: 'Abel';
+			background-color:  #009900;
+			padding: 2px;
+			padding-right: 40px;
+			padding-left: 40px;
+			border: 2px solid white;
+		  	cursor: pointer;
+		  	transition-duration: 0.2s;
+		}
+
+	.button1:hover{
+			background-color:  #00cc00;
+			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+			
+		}
+
+
+	.slidecontainer {
+	  width: 30%;
+	}
+
+	.slider {
+	  -webkit-appearance: none;
+	  width: 30%;
+	  height: 25px;
+	  background: #d3d3d3;
+	  outline: none;
+	  opacity: 0.7;
+	  -webkit-transition: .2s;
+	  transition: opacity .2s;
+	}
+
+	.slider:hover {
+	  opacity: 1;
+	}
+
+	.slider::-webkit-slider-thumb {
+	  -webkit-appearance: none;
+	  appearance: none;
+	  width: 25px;
+	  height: 25px;
+	  background: #4CAF50;
+	  cursor: pointer;
+	}
+
+	.slider::-moz-range-thumb {
+	  width: 25px;
+	  height: 25px;
+	  background: #4CAF50;
+	  cursor: pointer;
+	}
+	</style>
+	
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/addons/p5.dom.js"></script>
+  <script src="p5.speech.js"></script>
+
+
+  	<script>
+//____________________________________________________________Voice Rec _____________________________________________________________________________
+
+	  var myRec = new p5.SpeechRec('en-US', parseResult);
+	  myRec.continuous = true; 
+	  myRec.interimResults = true; 
+	  function setup()
+	  {
+	    myRec.start();
+	  }
+	  function parseResult()
+	  {
+	    var mostrecentword = myRec.resultString.split(' ').pop();
+	    if(mostrecentword.indexOf("bubble")!==-1) { bSort(); }
+	    else if(mostrecentword.indexOf("selection")!==-1) { sSort(); }
+	    else if(mostrecentword.indexOf("insertion")!==-1) { iSort(); }
+	    else if(mostrecentword.indexOf("reset")!==-1) { init(); }
+	    else if(mostrecentword.indexOf("fast")!==-1) { document.getElementById('myRange').value =  parseInt(document.getElementById('myRange').value) + 50; }
+	    else if(mostrecentword.indexOf("slow")!==-1) { document.getElementById('myRange').value -= 50;}
+	    console.log(mostrecentword);
+	  }
+	</script>
+
+
+	<script type="text/javascript">
+	
+
+		function func0(){
+				setTimeout(function(){
+				document.getElementById('overlay').style.display = 'none';
+				document.getElementById('loader2').style.display = 'none';
+			},1400);
+		}
+
+		var data1 = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		var len = data1.length;
+
+		function init()
+		{
+			for(var v=0;v<len;v++){
+				var name = "bar"+v;
+				document.getElementById(name).style.backgroundColor = 'black';
+			}
+			clearTimeout(myVar);
+			clearTimeout(myVar2);
+			clearTimeout(myVar3);
+			sSortMin=data1[0];
+			minIndex=0;
+			i=0;
+			j=0;
+			k=0;
+			a=0;
+			b=0;
+			count=0;
+			for(var i=0;i<len;i++)
+			{
+				data1[i] = (Math.random()/2)*1000;
+			}
+
+			for(var i=0;i<len;i++){
+				var name = "bar"+i;
+				document.getElementById(name).style.width = 16;
+				document.getElementById(name).style.height = data1[i];
+				document.getElementById(name).style.backgroundColor = 'black';
+
+			}
+
+		}
+//__________________________________________________________________________BUBBLE SORT________________________________________________________________
+		
+		var myVar = null;
+		var i=0;
+		var count=0;
+		function bSort()
+		{
+
+				
+
+				if(document.getElementById('bar0').style.backgroundColor == 'green'){
+						i=0;
+						count=0;
+						clearTimeout(myVar);
+				}				
+
+				if(data1[i] > data1[i+1])
+				{
+					document.getElementById('bar'+i).style.backgroundColor = 'red';
+					temp= data1[i];
+					data1[i] = data1[i+1];
+					data1[i+1] = temp;
+					document.getElementById("bar"+(i+1)).style.backgroundColor = 'blue';
+					bSortDisplay(i);
+				}
+				i++;
+				if(i==(len-count)) {
+					document.getElementById('bar'+(i-1)).style.backgroundColor = 'green';
+					i=0;
+					count++;
+				}
+
+				if(isSorted())
+				{
+					setTimeout(function(){
+						for(var l=0;l<len;l++)
+						{
+							document.getElementById('bar'+l).style.backgroundColor='black';
+						}
+						clearTimeout(myVar);
+        				document.getElementById('noise').muted = false;
+						document.getElementById('noise').play();
+					},1500);
+				}
+
+				myVar = setTimeout(bSort,1010-(document.getElementById('myRange').value));
+		}
+
+		function bSortDisplay(i)
+		{
+			clearTimeout(myVar);
+			setTimeout(function(){
+				document.getElementById("bar"+i).style.height = data1[i];
+				document.getElementById("bar"+(i+1)).style.height = data1[i+1];
+				document.getElementById("bar"+i).style.backgroundColor = 'black';
+				document.getElementById("bar"+(i+1)).style.backgroundColor = 'black';
+			},1010-(document.getElementById('myRange').value));
+		}
+
+
+//__________________________________________________________________________SELECTION SORT________________________________________________________________
+
+		var j=0;
+		var k=0;
+		var sSortMin=data1[0];
+		var minIndex=0;
+		var myVar2 =null;
+		function sSort()
+		{	
+			
+
+			if(k<len-1){
+					j=k;
+					sSortMin=data1[k+1];
+					while(j<len+2)
+					{
+						
+							if(data1[j] <= sSortMin)
+							{
+								minIndex = j;
+								sSortMin = data1[j];
+							}
+
+						j++;
+					}
+
+					document.getElementById('bar'+minIndex).style.backgroundColor = 'red';
+
+					var temp2= data1[k];
+					data1[k] = data1[minIndex];
+					data1[minIndex] = temp2;
+					sSortDisplay(minIndex,k);
+					document.getElementById('bar'+k).style.backgroundColor = 'blue';
+					k++;
+					myVar2 = setTimeout(sSort,1210-(document.getElementById('myRange').value));
+			}
+
+			if(isSorted())
+			{
+				setTimeout(function(){
+					for(var l=0;l<len;l++)
+					{
+						document.getElementById('bar'+l).style.backgroundColor='black';
+					}
+					clearTimeout(myVar2);
+        			document.getElementById('noise').muted = false;
+					document.getElementById('noise').play();
+				},1500);
+			}
+			
+		
+		}
+
+		function sSortDisplay(minIndex,k)
+		{
+			clearTimeout(myVar2);
+			setTimeout(function(){
+				document.getElementById("bar"+minIndex).style.height = data1[minIndex];
+				document.getElementById("bar"+k).style.height = data1[k];
+				document.getElementById("bar"+minIndex).style.backgroundColor = 'black';
+				document.getElementById("bar"+k).style.backgroundColor = 'green';
+			},1210-(document.getElementById('myRange').value));
+		}
+
+//__________________________________________________________________________INSERTION SORT________________________________________________________________
+
+
+		var a=0;
+		var b=0;
+		var myVar3 = null;
+		function iSort()
+		{
+
+				
+				b=a;
+				a++;
+
+				document.getElementById('bar'+a).style.backgroundColor = 'blue';
+				while(data1[b+1] < data1[b])
+				{
+					temp= data1[b];
+					data1[b] = data1[b+1];
+					data1[b+1] = temp;
+					iSortDisplay(b);
+					b--;
+				}
+				if(b>=0)
+				{	
+					document.getElementById('bar'+b).style.backgroundColor = 'red';
+				}
+
+				setTimeout(function(){
+						for(var l=0;l<a;l++)
+						{
+							document.getElementById('bar'+l).style.backgroundColor='green';
+						}
+				},1110-(document.getElementById('myRange').value));
+
+				if(isSorted())
+				{
+					setTimeout(function(){
+						for(var l=0;l<len;l++)
+						{
+							document.getElementById('bar'+l).style.backgroundColor='black';
+						}
+        				document.getElementById('noise').muted = false;
+						document.getElementById('noise').play();
+					},1500); 
+					
+				}
+
+				myVar2 = setTimeout(iSort,1110-(document.getElementById('myRange').value));
+		}
+
+		function iSortDisplay(b)
+		{
+			clearTimeout(myVar3);
+			setTimeout(function(){
+				document.getElementById("bar"+b).style.height = data1[b];
+				document.getElementById("bar"+(b+1)).style.height = data1[b+1];
+				document.getElementById('bar'+a).style.backgroundColor = 'green';
+			},1110-(document.getElementById('myRange').value));
+		}
+
+
+//________________________________________________________________________________________________________________________________________________________
+
+
+
+		function isSorted(){
+
+			for(var i=0;i<len;i++)
+			{
+				if(data1[i]>data1[i+1]){
+					return 0;
+				}
+			}
+
+			return 1;
+		}
+
+
+
+
+		function hover(bar){
+
+			var height = document.getElementById(bar).style.height;
+			document.getElementById(bar).title = parseInt(height);
+		}
+
+
+	</script>
+
+
+</head>
+
+
+<body onload="func0()" style="text-align: center;min-width:104px;max-width: 1200px; margin-left: auto;margin-right: auto;position: relative;top: -20;background-image: url('wp13.png');background-repeat: no-repeat;background-position:center;background-size: 70%;background-position-y: -260px;">
+
+	<div id="overlay"> </div>
+	<div id='loader2' ></div>
+
+	<div class="Heading"><span style="position: relative; top:8;">&nbsp Aditya Datta</sup></span></div>
+	<div class='sortingalgo'>S<small>ORTING</small>-A<small>LGOS</small></div>
+	<div class='sortingalgo2'>V<small>ISUALIZOR</small></div>
+
+	<br><br><br>
+	<button class='button1' onclick="init()" style="position: relative;top: -40">R<small>ESET</small></button>&nbsp&nbsp
+	<button class='button1' onclick="bSort()" style="position: relative;top: -40">B<small>UBBLE</small> S<small>ORT</small></button>&nbsp&nbsp
+	<button class='button1' onclick="sSort()" style="position: relative;top: -40">S<small>ELECTION</small> S<small>ORT</small></button>&nbsp&nbsp
+	<button class='button1' onclick="iSort()" style="position: relative;top: -40">I<small>NSERTION</small> S<small>ORT</small></button><br><br><br>
+	<input type="range" min="200" max="1010" value="410" class="slider" id="myRange" style="position: relative;top: -50">
+	<br><br>
+	<div style="zoom: 0.68;position: relative;top: -40;margin-right: auto;margin-left: auto;margin-bottom: -280">
+	<span class='trans' id="bar0" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar0')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar1" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar1')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar2" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar2')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar3" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar3')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar4" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar4')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar5" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar5')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar6" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar6')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar7" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar7')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar8" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar8')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar9" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar9')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar10" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar10')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar11" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar11')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar12" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar12')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar13" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar13')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar14" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar14')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar15" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar15')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar16" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar16')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar17" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar17')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar18" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar18')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar19" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar19')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar20" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar20')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar21" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar21')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar22" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar22')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar23" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar23')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar24" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar24')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar25" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar25')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar26" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar26')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar27" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar27')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar28" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar28')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar29" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar29')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar30" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar30')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar31" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar31')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar32" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar32')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar33" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar33')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar34" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar34')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar35" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar35')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar36" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar36')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar37" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar37')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar38" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar38')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar39" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar39')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar40" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar40')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar41" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar41')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar42" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar42')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar43" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar43')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar44" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar44')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar45" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar45')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar46" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar46')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar47" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar47')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar48" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar48')">.</span>&nbsp&nbsp
+	<span class='trans' id="bar49" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar49')">.</span>
+</div>
+<audio id="noise" src="noise.mp3" preload="auto" muted='muted'></audio>
+
+
+	<br><br>
+</body>
+
+
+</html>
