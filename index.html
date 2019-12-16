@@ -64,20 +64,21 @@
 
 	.sortingalgo{
 		text-align: center;
-		font-family: 'Abel';
+		font-family: 'Impact';
 		font-size: 60px;
 		color: white;
 		z-index: 3;
+		top:5;
 		position: relative;
 	}
 	.sortingalgo2{
 		text-align: center;
-		font-family: 'Abel';
+		font-family: 'Impact';
 		font-size: 60px;
 		color: white;
 		z-index: 0;
 		position: relative;
-		top: -30;
+		top: -17;
 		right: -44;
 	}
 			
@@ -100,6 +101,7 @@
 			padding-right: 40px;
 			padding-left: 40px;
 			border: 2px solid white;
+			border-radius: 4px;
 		  	cursor: pointer;
 		  	transition-duration: 0.2s;
 		}
@@ -438,23 +440,25 @@
 </head>
 
 
-<body onload="func0()" style="text-align: center;min-width:104px;max-width: 1200px; margin-left: auto;margin-right: auto;position: relative;top: -20;background-image: url('wp13.png');background-repeat: no-repeat;background-position:center;background-size: 70%;background-position-y: -260px;">
+<body onload="func0()" style="text-align: center;min-width:1200px;max-width: 1200px; margin-left: auto;margin-right: auto;position: relative;top: -20;overflow: hidden;">
 
 	<div id="overlay"> </div>
 	<div id='loader2' ></div>
+	<img src="wp13.png" style="position: relative;top: -300;width: 80%">
+	<div style="position: relative;top: -540">
 
-	<div class="Heading"><span style="position: relative; top:8;">&nbsp Aditya Datta</sup></span></div>
+	<div class="Heading"><span style="position: relative; top:8;">&nbsp</sup></span></div>
 	<div class='sortingalgo'>S<small>ORTING</small>-A<small>LGOS</small></div>
-	<div class='sortingalgo2'>V<small>ISUALIZOR</small></div>
+	<div class='sortingalgo2'>V<small>ISUALIZER</small></div>
 
 	<br><br><br>
-	<button class='button1' onclick="init()" style="position: relative;top: -40">R<small>ESET</small></button>&nbsp&nbsp
-	<button class='button1' onclick="bSort()" style="position: relative;top: -40">B<small>UBBLE</small> S<small>ORT</small></button>&nbsp&nbsp
-	<button class='button1' onclick="sSort()" style="position: relative;top: -40">S<small>ELECTION</small> S<small>ORT</small></button>&nbsp&nbsp
-	<button class='button1' onclick="iSort()" style="position: relative;top: -40">I<small>NSERTION</small> S<small>ORT</small></button><br><br><br>
-	<input type="range" min="200" max="1010" value="410" class="slider" id="myRange" style="position: relative;top: -50">
-	<br><br>
-	<div style="zoom: 0.68;position: relative;top: -40;margin-right: auto;margin-left: auto;margin-bottom: -280">
+	<button class='button1' onclick="init()" style="position: relative;top: -50">R<small>ESET</small></button>&nbsp&nbsp
+	<button class='button1' onclick="bSort()" style="position: relative;top: -50">B<small>UBBLE</small> S<small>ORT</small></button>&nbsp&nbsp
+	<button class='button1' onclick="sSort()" style="position: relative;top: -50">S<small>ELECTION</small> S<small>ORT</small></button>&nbsp&nbsp
+	<button class='button1' onclick="iSort()" style="position: relative;top: -50">I<small>NSERTION</small> S<small>ORT</small></button><br><br><br>
+	<input type="range" min="200" max="1010" value="410" class="slider" id="myRange" style="position: relative;top: -70">
+	<br>
+	<div style="zoom: 0.68;position: relative;top: -60;margin-right: auto;margin-left: auto;margin-bottom: -280">
 	<span class='trans' id="bar0" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar0')">.</span>&nbsp&nbsp
 	<span class='trans' id="bar1" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar1')">.</span>&nbsp&nbsp
 	<span class='trans' id="bar2" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar2')">.</span>&nbsp&nbsp
@@ -507,9 +511,7 @@
 	<span class='trans' id="bar49" style="background-color: black;display: inline-block; cursor:pointer" onmouseover="hover('bar49')">.</span>
 </div>
 <audio id="noise" src="noise.mp3" preload="auto" muted='muted'></audio>
-
-
-	<br><br>
+	</div>
 </body>
 
 
