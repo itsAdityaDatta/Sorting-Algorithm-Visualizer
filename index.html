@@ -2,6 +2,7 @@
 
 <head>
 	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+	<link rel="icon" href="algorithm.png">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Sorting Algo Visualizer</title>
@@ -152,31 +153,6 @@
 	
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/addons/p5.dom.js"></script>
-  <script src="p5.speech.js"></script>
-
-
-  	<script>
-//____________________________________________________________Voice Rec _____________________________________________________________________________
-
-	  var myRec = new p5.SpeechRec('en-US', parseResult);
-	  myRec.continuous = true; 
-	  myRec.interimResults = true; 
-	  function setup()
-	  {
-	    myRec.start();
-	  }
-	  function parseResult()
-	  {
-	    var mostrecentword = myRec.resultString.split(' ').pop();
-	    if(mostrecentword.indexOf("bubble")!==-1) { bSort(); }
-	    else if(mostrecentword.indexOf("selection")!==-1) { sSort(); }
-	    else if(mostrecentword.indexOf("insertion")!==-1) { iSort(); }
-	    else if(mostrecentword.indexOf("reset")!==-1) { init(); }
-	    else if(mostrecentword.indexOf("fast")!==-1) { document.getElementById('myRange').value =  parseInt(document.getElementById('myRange').value) + 50; }
-	    else if(mostrecentword.indexOf("slow")!==-1) { document.getElementById('myRange').value -= 50;}
-	    console.log(mostrecentword);
-	  }
-	</script>
 
 
 	<script type="text/javascript">
