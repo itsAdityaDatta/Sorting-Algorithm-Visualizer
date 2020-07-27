@@ -1,0 +1,37 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+    <link rel="stylesheet" type="text/css" href="homeStyle.css">
+    <title>Sorting Algorithms' Visualizer</title>
+</head>
+
+<body>
+    <div class='btnContainer'>
+        <a class="waves-effect waves-light btn-small btn" id='bubble'>Bubble Sort</a>
+        <a class="waves-effect waves-light btn-small btn" id='insertion'>Insertion Sort</a>
+        <a class="waves-effect waves-light btn-small btn" id='selection'>Selection Sort</a>
+        <a class="waves-effect waves-light btn-small btn" id='reset'>Reset</a>
+    </div>
+    <div id='rangeContainer'>
+        <div class="range-slider">
+            <input class="range-slider__range" type="range" value="940" min="0" max="1000" id='speed'>
+        </div> 
+    </div>
+    
+    <div id='barsContainerParent'>
+        <div id='barsContainer'></div>
+    </div>
+
+    <div class='footer'>
+        <a class='white-text'>number of comparisons : <span id='numComparisons'>0</span> &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp number of swaps : <span id='numSwaps'>0</span></a>
+    </div>
+
+</body>
+<script src="homeScript.js"></script> 
+</html>

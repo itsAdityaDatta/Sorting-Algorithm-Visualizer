@@ -1,0 +1,244 @@
+html{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+body{
+    margin: 0;
+}
+
+.body{
+    font-family: 'Open Sans', sans-serif;
+    display: block;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 60px;
+}
+
+.header{
+    display: block;
+    padding: 75px;
+    margin-top: -10;
+    background-color: rgb(240,240,250);
+    text-align: center;
+    cursor: default;
+}
+
+.headText{
+    font-size: 60px;
+    color: black;
+    font-family: 'Handlee';
+}
+
+.headFooter{
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    padding-top: 10px;
+}
+
+.navbar{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+  background-color: #333;
+  font-size: 14px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
+
+.navbar li {
+    float: left;
+    font-family: 'Raleway', sans-serif;
+}
+  
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-right: 1px solid black;
+}
+  
+.navbar li a:hover {
+    background-color: rgb(255, 125, 0);
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    padding: 2px;
+    background-color: #333;
+    color: white;
+    font-family: 'Indie Flower', cursive;
+    cursor: default;
+}
+
+.inputs{
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 14px;
+    border: 1px solid rgb(110, 110,110);    
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 5px;
+
+}
+
+.inputs:focus{
+        outline: none !important;
+        border-color: rgb(255, 90, 0);
+}
+
+.inputs2{
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 2px;
+    font-family: 'Open Sans', sans-serif;
+    resize: vertical;
+    border: 1px solid rgb(110,110,110);
+    margin-bottom: 10px;
+}
+
+.inputs2:focus{
+        outline: none !important;
+        border-color: rgb(255, 90, 0);
+}
+
+.composeHeading{
+    font-family: 'Abel', sans-serif;
+    font-size: 40px;
+    background-color: rgb(255, 125, 0);
+    color: white;
+    display: inline-block;
+    padding-left: 200px;
+    padding-right: 200px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transform: translateX(-200px);
+}
+
+
+.composeForm{
+    font-size: 18px;
+    font-family: 'Abel', sans-serif;
+
+}
+
+.composeButton{
+    color: #333;
+    background-color: white;
+    font-size: 20px;
+    font-family: 'Abel', sans-serif;
+    border: 1.5px solid rgb(255, 125, 0);
+    border-radius: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    cursor: pointer;
+}
+
+.composeButton:hover{
+    transition-duration: 0.1s;
+    color:white;
+    background-color: rgb(255, 125, 0);
+}
+
+.posts{
+    background-color: #e5e5e5;
+    display: block;
+    overflow-x: hidden;
+    font-size: 14px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 1px;
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid #e5e5e5;
+
+}
+
+.posts:hover{
+    transition-duration: 0.1s;
+    background-color: #ddd;
+}
+
+
+.postsTitles{
+    font-size: 30px;   
+    color: black;
+    font-family: 'Abel', sans-serif;
+    margin-top: -5px;
+    padding-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.add{
+    background-color: rgb(255, 125, 0);
+    color: white;
+    font-size: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10%;
+    float: right;
+}
+.add:hover{
+    transition-duration: 0.1s;
+    background-color: rgb(255, 90, 0);
+}
+
+@media screen and (max-width: 800px) {
+    .navbar ul li.right, 
+    .navbar ul li {float: none;}
+    .navbar ul li a{
+        padding: 6px 12px;
+        border-bottom: 1px solid black;
+    }
+    .navbar {
+        position: relative;
+    }
+
+    
+}
+    @media screen and (max-width: 1000px) {
+        .anim{
+            display: none !important;
+        }
+        .anim2{
+            display: none !important;
+        }
+    }
+        
+    .anim {
+        background-color: rgb(255, 90, 0);
+        display: inline-block;
+        height: 10px;
+        width: 400px;
+        color: rgb(240,240,250);
+        transform: translateY(-50px) translateX(570px) rotateZ(-50deg);
+    }
+
+    .anim2 {
+        background-color: #333;
+        display: inline-block;
+        width: 400px;
+        color: #333;
+        height: 20px;
+        transform: translateY(-50px) translateX(200px) rotateZ(-50deg);
+    }

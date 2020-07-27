@@ -1,0 +1,216 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Raleway&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Abel|Open+Sans|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Handlee&display=swap" rel="stylesheet">
+
+        <style>
+        html{
+            scroll-behavior: smooth;
+        }
+
+        body{
+            margin:0px;
+        }
+
+        .body{
+            font-family: 'Open Sans', sans-serif;
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .header{
+            display: block;
+            padding: 75px;
+            margin-top: -10;
+            background-color: rgb(240,240,250);
+            text-align: center;
+            cursor: default;
+        }
+
+        .headText{
+            font-size: 60px;
+            color: black;
+            font-family: 'Handlee';
+        }
+
+        .headFooter{
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            padding-top: 10px;
+        }
+
+        .navbar{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0px;
+            z-index: 2;
+            font-size: 14px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+        }
+
+        .navbar li {
+            float: left;
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        .navbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-right: 1px solid black;
+        }
+        
+        .navbar li a:hover {
+            background-color: rgb(255, 125, 0);
+        }
+        
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            padding: 2px;
+            background-color: #333;
+            color: white;
+            font-family: 'Indie Flower', cursive;
+            cursor: default;
+        }
+
+        .posts{
+            background-color: #ffffff;
+            padding: 25px;
+            padding-top: 0px;
+            display: block;
+            width: 92%;
+            margin-right: auto;
+            margin-left: auto;
+            white-space: pre-line;
+            overflow-x: hidden;
+            margin-top: 30px;
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+
+        }
+
+        .postsTitles{
+            font-family: 'Abel', sans-serif;
+            font-size: 40px;
+            background-color:  rgb(255, 125, 0);
+            color: white;
+            display: inline-block;
+            padding-left: 250px;
+            padding-right: 200px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            transform: translateX(-200px);
+        }
+        
+        hr { 
+            border: 0;
+            height: 0.5px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0));
+        }
+
+        @media screen and (max-width: 800px) {
+            .navbar ul li.right, 
+            .navbar ul li {float: none;}
+            .navbar ul li a{
+                padding: 6px 12px;
+                border-bottom: 1px solid black;
+            }
+            .navbar {
+                position: relative;
+            }
+            .postsTitles{
+                font-size: 26px;
+                padding: 10px;
+                padding-left: 230px;
+                padding-right: 10px;
+                width: 110%;
+            }
+            body{
+                overflow-x: hidden;
+            }
+            .anim{
+                display: none;
+            }
+            .anim2{
+                display: none;
+            }
+        }
+
+    @media screen and (max-width: 1000px) {
+        .anim{
+            display: none !important;
+        }
+        .anim2{
+            display: none !important;
+        }
+    }
+        
+    .anim {
+        background-color: rgb(255, 90, 0);
+        display: inline-block;
+        height: 10px;
+        width: 400px;
+        color: rgb(240,240,250);
+        transform: translateY(-50px) translateX(570px) rotateZ(-50deg);
+    }
+
+    .anim2 {
+        background-color: #333;
+        display: inline-block;
+        width: 400px;
+        color: #333;
+        height: 20px;
+        transform: translateY(-50px) translateX(200px) rotateZ(-50deg);
+    }
+
+        </style>
+        <title><%= pageTitle %></title>
+    </head>
+    <body>
+        <div class="header">
+            <div class='headText'><small style="background-color: rgb(255,100,0);color: white;padding-left: 15px;padding-right: 15px;border-radius: 10%;margin-right: 2px;padding-top: 8px;">O</small>range</div>
+            <div class='headFooter'>The only <span style="color:rgb(255,100,0)">Forum</span> you'll need.</div>
+            <div class='anim'>.</div><div class='anim2'>.</div>
+        </div>
+        <div class='navbar'>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About us</a></li>
+            <li><a href="/compose">Compose</a></li>
+          </ul>
+        </div>
+          <br><br><br><br>
+        <div class="body">      
+            <div class='postsTitles'>
+                <%= title %>
+            </div>
+            <div class="posts">  
+                <%= body %>
+            </div>
+        </div>
+        <br>
+        <hr>
+    </body><br><br><br><br><br>
+    <div class='footer'>made with love</div>
+    </html>

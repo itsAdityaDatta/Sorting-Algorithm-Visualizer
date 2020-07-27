@@ -1,0 +1,111 @@
+
+
+.btnContainer{
+    text-align: center;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.btn{
+    font-family: 'Abel';
+    background-color: #69114c;
+    box-shadow: none;
+}
+
+.btn:hover{
+    box-shadow: none;    
+    background-color: rgb(129, 33, 219);
+}
+
+#reset{
+    background-color: rgb(161, 7, 7);
+}
+
+#reset:hover{
+    background-color: rgb(224, 45, 45);
+}
+
+#barsContainerParent{
+    position: fixed;
+    width: 100%;
+    bottom: 28px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#barsContainer{
+    display: inline-block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    white-space: nowrap;
+}
+
+.bars{
+    top: 0px;
+    width: 7px;
+    display: inline-block;
+    background-color: black;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+#rangeContainer{
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+.range-slider {
+    width: 100%;
+}
+.range-slider__range::-moz-range-thumb:hover {
+    background: #1abc9c;
+}
+.range-slider__range:active::-moz-range-thumb {
+    background: #1abc9c;
+}
+.range-slider__range:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #1abc9c;
+}
+::-moz-range-track {
+    background: #d7dcdf;
+    border: 0;
+}
+  
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+    border: 0;
+}
+
+.footer{
+    background-color: #310522;
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Abel';
+    font-size: 16px;
+    display: block;
+}
+  
+.toast{
+    box-shadow: none;
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen and (max-width: 1100px) {
+    #barsContainer{
+        zoom:0.8;
+    }
+
+    .btnContainer{
+        zoom:0.9;
+    }
+}
